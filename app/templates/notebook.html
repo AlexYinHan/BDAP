@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Notebook</h1>
+    <div class="main-container" id="jupyterlab">
+        <iframe id="jupyterlabFrame" src="http://localhost:8888/lab" onload="changeFrameHeight()" scrolling="no"  width="100%" frameborder="0">
+        您的浏览器不支持iframe，请升级
+        </iframe>
+    </div>
+    <script>
+        function changeFrameHeight(){
+            console.log('here');
+            var ifm= document.getElementById("jupyterlabFrame"); 
+            ifm.height=document.documentElement.clientHeight - document.getElementById("jupyterlab").offsetParent.offsetTop;
+            console.log(document.documentElement.clientHeight);
+            console.log(document.getElementById("topNavBar"));
+        }
+        window.onresize=function(){  
+            changeFrameHeight();  
+        } 
+    </script>
 {% endblock %}
