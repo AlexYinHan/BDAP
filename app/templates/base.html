@@ -5,13 +5,27 @@
 {% endblock %}
 
 {% block navbar %}
-<nav class="navbar navbar-default" id="topNavBar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="{{ url_for('index') }}">Logo</a>
-      </div>
-    </div>
-</nav>
+    <nav class="navbar navbar-inverse navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index') }}">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block content %}
@@ -20,12 +34,9 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
             <li class="active"><a href="{{ url_for('notebook') }}">Notebook <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">API</a></li>
-            <li><a href="#">Wiki</a></li>
-            <li><a href="#">Hive</a></li>
-            <li><a href="#">Hive</a></li>
-            <li><a href="#">Hive</a></li>
-            <li><a href="#">Hive</a></li>
+            <li><a href="{{ url_for('api') }}">API</a></li>
+            <li><a href="{{ url_for('wiki') }}">Wiki</a></li>
+            <li><a href="{{ url_for('hive') }}">Hive</a></li>
             </ul>         
         </div>
         <div class="col-sm-9 col-md-10 main">

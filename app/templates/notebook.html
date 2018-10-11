@@ -8,11 +8,8 @@
     </div>
     <script>
         function changeFrameHeight(){
-            console.log('here');
             var ifm= document.getElementById("jupyterlabFrame"); 
             ifm.height=document.documentElement.clientHeight - document.getElementById("jupyterlab").offsetParent.offsetTop;
-            console.log(document.documentElement.clientHeight);
-            console.log(document.getElementById("topNavBar"));
         }
         window.onresize=function(){  
             changeFrameHeight();  
