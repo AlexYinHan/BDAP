@@ -21,7 +21,12 @@
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -31,7 +36,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-2 col-md-1 sidebar">
             <ul class="nav nav-sidebar">
             <li class="active"><a href="{{ url_for('notebook') }}">Notebook <span class="sr-only">(current)</span></a></li>
             <li><a href="{{ url_for('api') }}">API</a></li>
@@ -39,7 +44,15 @@
             <li><a href="{{ url_for('hive') }}">Hive</a></li>
             </ul>         
         </div>
-        <div class="col-sm-9 col-md-10 main">
+        <div class="col-sm-10 col-md-11 main">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
             {% block app_content %}{% endblock %}
         </div>
     </div>      
